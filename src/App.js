@@ -8,25 +8,30 @@ class App extends React.Component {
     message: ''
   };
 
+  // sendMessage represents form submission method that will trigger when user has filled all the fields and submitted the form
   sendMessage = event => {
-    event.preventDefault();
-    const data = {
-      firstName: this.state.firstName,
-      email: this.state.email,
-      message: this.state.message
-    };
+    event.preventDefault(); // --> .preventDefault() is called on the event when submitting the form to prevent a browser reload/refresh
+
+    // const data = {
+    //   firstName: this.state.firstName,
+    //   email: this.state.email,
+    //   message: this.state.message
+    // };
+
+    const { firstName, email, message } = this.state;
+    const data = { firstName, email, message };
     alert(`Message with data: ${JSON.stringify(data, null, 2)} was sent.`);
   };
 
   changeName = event => {
-    const value = event.target.value;
+    const { value } = event.target;
     this.setState({
       firstName: value
     });
   };
 
   handleInputChange = event => {
-    const value = event.target.value;
+    const { value } = event.target;
     const inputName = event.target.name;
     this.setState({
       [inputName]: value
